@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="tab_text_selector">@color/colorPrimary</color>
+    <color name="tab_text_unselector">#777777</color>
+    <color name="card_bg">#eae2e2</color>
 </resources>

@@ -6,7 +6,7 @@ import java.io.Serializable
  * Created by Fitem on 2018/3/21.
  */
 
-data class Grils(
+data class Girls(
     val isError: Boolean,
     val results: List<ResultsBean>
 ) : Serializable {

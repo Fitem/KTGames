@@ -28,7 +28,7 @@ interface ApiService {
     fun getGrilsPic(
         @Path("page_size") ps: Int,
         @Path("page") pg: Int
-    ): Observable<Grils>
+    ): Observable<Girls>
 
     @GET("list")
     fun getLiveList(

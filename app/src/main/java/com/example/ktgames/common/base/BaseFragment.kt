@@ -29,6 +29,8 @@ abstract class BaseFragment : Fragment() {
         isViewPrepared = true
         lazyFetchDataIfPrepared()
         initView()
+        initListener()
+        initData()
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
@@ -70,9 +72,16 @@ abstract class BaseFragment : Fragment() {
     abstract fun initView()
 
     /**
+     * 初始化listener
+     */
+    abstract fun initListener()
+
+    abstract fun initData()
+
+    /**
      * 懒加载的方式获取数据，仅在满足fragment可见和视图已经准备好的时候调用一次
      */
-    fun lazyFetchData() {
+    open fun lazyFetchData() {
 
     }
 }

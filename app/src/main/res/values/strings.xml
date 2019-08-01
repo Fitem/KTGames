@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">KTGames</string>
+
+    <string name="news">新闻</string>
+    <string name="live">直播</string>
+    <string name="girls">美女</string>
+    <string name="mine">我的</string>
 </resources>
