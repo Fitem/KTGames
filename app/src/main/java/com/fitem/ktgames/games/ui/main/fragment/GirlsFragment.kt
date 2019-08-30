@@ -6,18 +6,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.fitem.ktgames.R
 import com.fitem.ktgames.common.base.BaseFragment
-import com.fitem.ktgames.games.GirlsContract
 import com.fitem.ktgames.games.api.HostType
 import com.fitem.ktgames.games.app.AppApplication
-import com.fitem.ktgames.games.module.bean.Girls
+import com.fitem.ktgames.games.contract.GirlsContract
+import com.fitem.ktgames.games.model.bean.Girls
 import com.fitem.ktgames.games.presenter.GirlsPresenter
 import com.fitem.ktgames.games.ui.grils.activity.GirlsActivity
 import com.fitem.ktgames.games.ui.grils.adapter.GirlsAdapter
@@ -47,29 +49,35 @@ class GirlsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Girl
     }
 
     companion object {
-
         fun getInstance(): GirlsFragment {
             val fragment = GirlsFragment()
             val bundle = Bundle()
             fragment.arguments = bundle
             return fragment
         }
-
     }
 
     override fun initView() {
-        mToolbar.setTitle(R.string.girls)
+        mTitle.setText(R.string.girls)
         mSwipeLayout.setColorSchemeResources(R.color.colorAccent)
         mSwipeLayout.setOnRefreshListener(this)
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
         mRecyclerView.layoutManager = layoutManager
         mRecyclerView.adapter = mAdapter
+    }
 
+    override fun lazyFetchDataIfPrepared() {
+        super.lazyFetchDataIfPrepared()
+        activity?.let {
+            BarUtils.setStatusBarColor(it, ContextCompat.getColor(it, R.color.white))
+            BarUtils.setStatusBarLightMode(it, true)
+            BarUtils.addMarginTopEqualStatusBarHeight(mAppBarLayout)
+        }
     }
 
     override fun initData() {
-        onRefresh()
+
     }
 
     override fun initListener() {
@@ -80,13 +88,13 @@ class GirlsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Girl
         }
         mAdapter.setOnLoadMoreListener(this, mRecyclerView)
 
-        mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 LogUtils.d("newState：$newState")
-                if (newState == RecyclerView.SCROLL_STATE_SETTLING){
+                if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
                     GlideApp.with(AppApplication.context).pauseRequests()
-                }else{
+                } else {
                     GlideApp.with(AppApplication.context).resumeRequests()
                 }
             }
@@ -94,7 +102,7 @@ class GirlsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Girl
     }
 
     override fun onLoadMoreRequested() {
-        mPresenter.requestGirlsNextPagePresenter();
+        mPresenter.requestGirlsNextPagePresenter()
     }
 
     private fun transition(bean: Girls.ResultsBean, view: View) {

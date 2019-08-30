@@ -12,7 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.fitem.ktgames.R
 import com.fitem.ktgames.games.app.AppApplication
-import com.fitem.ktgames.games.module.bean.Girls
+import com.fitem.ktgames.games.model.bean.Girls
 import com.hazz.kotlinmvp.glide.GlideApp
 
 /**

@@ -53,7 +53,7 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    private fun lazyFetchDataIfPrepared() {
+    open fun lazyFetchDataIfPrepared() {
         // 用户可见fragment && 没有加载过数据 && 视图已经准备完毕
         if (isHideShow && userVisibleHint && !hasFetchData && isViewPrepared) {
             hasFetchData = true

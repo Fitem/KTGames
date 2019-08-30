@@ -3,8 +3,10 @@
     <!-- BlueGray -->
     <color name="blue_gray_primary">#607D8B</color>
     <color name="blue_gray_primary_dark">#455A64</color>
-    <color name="blue_gray_primary_light">#CFD8DC</color>
     <color name="blue_gray_accent">#607D8B</color>
-    <color name="blue_gray_primary_text">#212121</color>
-    <color name="blue_gray_secondary_text">#757575</color>
+
+    <!-- Black -->
+    <color name="gray_black_primary">#212121</color>
+    <color name="gray_black_primary_dark">#000000</color>
+    <color name="black_accent">#FF6D00</color>
 </resources>

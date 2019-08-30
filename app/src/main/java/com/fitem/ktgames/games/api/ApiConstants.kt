@@ -31,6 +31,11 @@ object ApiConstants {
     const val LIVE_HOST = "http://api.maxjia.com/api/live/"
 
     /**
+     * http://baobab.kaiyanapp.com/api/v2/feed?date=1503104400000&num=1
+     */
+    const val VIDEO_HOST = "http://baobab.kaiyanapp.com/api/"
+
+    /**
      * 获取对应的host
      *
      * @param hostType host类型
@@ -42,6 +47,7 @@ object ApiConstants {
             HostType.NEWS_HOST -> URL = NEWS_HOST
             HostType.GRILS_HOST -> URL = GRILS_HOST
             HostType.LIVE_HOST -> URL = LIVE_HOST
+            HostType.VIDEO_HOST -> URL = VIDEO_HOST
         }
         return URL
     }

@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/sdk_color_001</item>
     </style>
 
     <style name="TransparentTheme" parent="AppTheme">
@@ -17,9 +18,9 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
     
-    <style name="TransparentTheme.BlueGray" parent="TransparentTheme">
-        <item name="colorPrimaryDark">@color/blue_gray_primary_dark</item>
-        <item name="colorPrimary">@color/blue_gray_primary</item>
+    <style name="TransparentTheme.GrayBlack" parent="TransparentTheme">
+        <item name="colorPrimaryDark">@color/gray_black_primary_dark</item>
+        <item name="colorPrimary">@color/gray_black_primary</item>
     </style>
 
 </resources>

@@ -19,5 +19,7 @@ object HostType {
 
     const val LIVE_HOST = 3
 
+    const val VIDEO_HOST = 4
+
     const val PAGE_SIZE = 20
 }

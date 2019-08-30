@@ -51,11 +51,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun doBeforeSetcontentView() {
         //设置昼夜主题
-//        initTheme();
-        // 无标题
-//        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        // 设置竖屏
-//        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        initTheme()
+    }
+
+    open fun initTheme(){
+
     }
 
     /**

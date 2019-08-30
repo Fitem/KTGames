@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentTransaction
 import com.fitem.ktgames.R
 import com.fitem.ktgames.common.base.BaseActivity
-import com.fitem.ktgames.games.module.bean.TabEntity
+import com.fitem.ktgames.games.model.bean.TabEntity
 import com.fitem.ktgames.games.ui.main.Constants
 import com.fitem.ktgames.games.ui.main.fragment.GirlsFragment
+import com.fitem.ktgames.games.ui.main.fragment.HomeFragment
 import com.fitem.ktgames.games.ui.main.fragment.LiveFragment
 import com.fitem.ktgames.games.ui.main.fragment.MineFragment
-import com.fitem.ktgames.games.ui.main.fragment.NewsFragment
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,15 +21,15 @@ class MainActivity : BaseActivity() {
     private var mTitls: Array<String> by Delegates.notNull()
     private var mTabEntities = ArrayList<CustomTabEntity>()
     private val mIconUnselectIds =
-        arrayOf(R.mipmap.ic_news_normal, R.mipmap.ic_score_normal, R.mipmap.ic_group_normal, R.mipmap.ic_mine_normal)
+        arrayOf(R.drawable.ic_home_normal, R.drawable.ic_hot_normal, R.drawable.ic_discovery_normal, R.drawable.ic_mine_normal)
     private val mIconSelectIds = arrayOf(
-        R.mipmap.ic_news_selected,
-        R.mipmap.ic_score_selected,
-        R.mipmap.ic_group_selected,
-        R.mipmap.ic_mine_selected
+        R.drawable.ic_home_selected,
+        R.drawable.ic_hot_selected,
+        R.drawable.ic_discovery_selected,
+        R.drawable.ic_mine_selected
     )
 
-    private var mNewFragment: NewsFragment? = null
+    private var mHomeFragment: HomeFragment? = null
     private var mGirlsFragment: GirlsFragment? = null
     private var mLiveFragment: LiveFragment? = null
     private var mMineFragment: MineFragment? = null
@@ -77,11 +77,11 @@ class MainActivity : BaseActivity() {
         hideFrgamnts(transaction)
         when (position) {
             0 //新闻
-            -> mNewFragment?.let {
+            -> mHomeFragment?.let {
                 transaction.show(it)
-            } ?: NewsFragment.getInstance().let {
-                mNewFragment = it
-                transaction.add(R.id.fl_container, it, "news")
+            } ?: HomeFragment.getInstance().let {
+                mHomeFragment = it
+                transaction.add(R.id.fl_container, it, "video")
             }
             1 //直播
             -> mLiveFragment?.let {
@@ -110,7 +110,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun hideFrgamnts(transaction: FragmentTransaction) {
-        mNewFragment?.let { transaction.hide(it) }
+        mHomeFragment?.let { transaction.hide(it) }
         mLiveFragment?.let { transaction.hide(it) }
         mGirlsFragment?.let { transaction.hide(it) }
         mMineFragment?.let { transaction.hide(it) }
@@ -118,7 +118,7 @@ class MainActivity : BaseActivity() {
 
     private fun initTabData() {
         mTitls = arrayOf(
-            getString(R.string.news),
+            getString(R.string.video),
             getString(R.string.live),
             getString(R.string.girls),
             getString(R.string.mine)

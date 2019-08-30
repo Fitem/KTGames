@@ -50,4 +50,6 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
     // photoView
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    //Banner
+    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
 }

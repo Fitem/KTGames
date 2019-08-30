@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent" android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent" android:layout_height="match_parent"
+             android:orientation="vertical">
 
     <FrameLayout
             android:id="@+id/fl_container"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.0"/>
+            android:layout_height="match_parent"/>
 
 
     <com.flyco.tablayout.CommonTabLayout
@@ -17,8 +16,12 @@
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
+            android:background="@color/half_alpha_white"
+            app:tl_iconHeight="24dp"
+            app:tl_iconWidth="24dp"
+            android:layout_alignParentBottom="true"
             app:tl_indicator_height="0dp"
             app:tl_textSelectColor="@color/tab_text_selector"
             app:tl_textUnselectColor="@color/tab_text_unselector"
             app:tl_textsize="@dimen/tab_text_size"/>
-</LinearLayout>
+</RelativeLayout>

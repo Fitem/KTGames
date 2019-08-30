@@ -1,7 +1,7 @@
 package com.fitem.ktgames.games.presenter
 
-import com.fitem.ktgames.games.GirlsContract
-import com.fitem.ktgames.games.module.GirlsModel
+import com.fitem.ktgames.games.contract.GirlsContract
+import com.fitem.ktgames.games.model.GirlsModel
 import com.hazz.kotlinmvp.base.BasePresenter
 
 /**

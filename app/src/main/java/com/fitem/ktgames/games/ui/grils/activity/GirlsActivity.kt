@@ -91,6 +91,9 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
             .into(mIvPhoto)
     }
 
+    override fun initTheme() {
+    }
+
     protected fun hideOrShowToolbar() {
         mToolbar.animate()
             .alpha(if (mIsToolBarHidden) 1.0f else 0.0f)

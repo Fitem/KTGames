@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">KTGames</string>
 
+    <string name="video">视频</string>
     <string name="news">新闻</string>
     <string name="live">直播</string>
     <string name="girls">美女</string>
     <string name="mine">我的</string>
     <string name="transition_grils">transition_grils</string>
+    <string name="transition_video">transition_video</string>
     <string name="save">保存</string>
 </resources>

@@ -1,11 +1,12 @@
 package com.fitem.ktgames.games.api
 
 import androidx.collection.ArrayMap
-import com.fitem.ktgames.games.module.bean.*
+import com.fitem.ktgames.games.model.bean.*
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 /**
  * Created by LeiGuangwu on 2019-06-27.
@@ -24,6 +25,9 @@ interface ApiService {
         @Path("news_id") news_id: String
     ): Observable<ArrayMap<String, GNewsDetail>>
 
+    /**
+     * 美女图片
+     */
     @GET("{page_size}/{page}")
     fun getGrilsPic(
         @Path("page_size") ps: Int,
@@ -44,4 +48,16 @@ interface ApiService {
         @Query("live_id") liveId: String,
         @Query("game_type") gameType: String
     ): Observable<LiveBase<LiveDetail>>
+
+    /**
+     * 首页精选
+     */
+    @GET("v2/feed?")
+    fun getFirstHomeData(@Query("num") num:Int): Observable<HomeBean>
+
+    /**
+     * 根据 nextPageUrl 请求数据下一页数据
+     */
+    @GET
+    fun getMoreHomeData(@Url url: String): Observable<HomeBean>
 }
