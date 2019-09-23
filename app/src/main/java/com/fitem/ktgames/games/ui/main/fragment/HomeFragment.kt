@@ -1,5 +1,6 @@
 package com.fitem.ktgames.games.ui.main.fragment
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import com.fitem.ktgames.games.ui.video.adapter.VideoAdapter
 import com.fitem.ktgames.games.ui.video.adapter.VideoConstant
 import kotlinx.android.synthetic.main.fragment_girls.mRecyclerView
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_home_content.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -117,6 +119,15 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
         })
 
         mAdapter.setOnLoadMoreListener(this, mRecyclerView)
+        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+            val bean = mAdapter.data[position]
+            if (bean.itemType == VideoConstant.VIDEO_CONTENT) {
+                mAdapter.goToVideoPlayer(context as Activity, view.iv_cover_feed, bean)
+            }
+        }
+        mIvSearch.setOnClickListener {
+            ToastUtils.showShort("即将上线！")
+        }
     }
 
     override fun onLoadMoreRequested() {
@@ -163,7 +174,7 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
     private fun setItemType(itemList: ArrayList<HomeBean.Issue.Item>) {
         itemList.map { item ->
             item.itemType =
-                if ("textHeader" == item.type) VideoConstant.VIDEO_TEXT_HEADER else VideoConstant.VIDEO_CONTENT
+                if (VideoConstant.TEXT_HEAD == item.type) VideoConstant.VIDEO_TEXT_HEADER else VideoConstant.VIDEO_CONTENT
         }
     }
 

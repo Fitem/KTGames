@@ -9,4 +9,13 @@
     <string name="transition_grils">transition_grils</string>
     <string name="transition_video">transition_video</string>
     <string name="save">保存</string>
+    <string name="video_attention">+ 关注</string>
+    <string name="video_cached">缓存</string>
+
+    <!-- 权限 -->
+    <string name="permission_download_show_rationale">下载图片，需要读写手机存储权限！</string>
+    <string name="button_allow">允许</string>
+    <string name="button_setting">去设置</string>
+    <string name="button_deny">拒绝</string>
+    <string name="permission_download_denied">没有授权，请重新授权！</string>
 </resources>

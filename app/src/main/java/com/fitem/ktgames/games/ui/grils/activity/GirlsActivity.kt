@@ -1,5 +1,6 @@
 package com.fitem.ktgames.games.ui.grils.activity
 
+import android.Manifest
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -8,6 +9,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
+import android.widget.ImageView
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
+import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.EncryptUtils
 import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.ToastUtils
@@ -24,6 +29,7 @@ import com.fitem.ktgames.common.widget.PullBackLayout
 import com.fitem.ktgames.games.ui.main.Constants
 import com.hazz.kotlinmvp.glide.GlideApp
 import kotlinx.android.synthetic.main.activity_girls.*
+import permissions.dispatcher.*
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -31,6 +37,7 @@ import java.io.FileNotFoundException
 /**
  * Created by LeiGuangwu on 2019-08-14.
  */
+@RuntimePermissions
 class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
 
     private var mIsToolBarHidden = false
@@ -88,7 +95,7 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
             .error(R.drawable.ic_news_prepare)
             .fitCenter()
             .transition(DrawableTransitionOptions().crossFade())
-            .into(mIvPhoto)
+            .into(mIvPhoto as ImageView)
     }
 
     override fun initTheme() {
@@ -131,7 +138,9 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
             android.R.id.home
             -> onBackPressed()
             R.id.save
-            -> url?.let { download(it) }
+            -> url?.let {
+                downloadWithPermissionCheck(it)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -143,11 +152,12 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
     }
 
     // 保存图片到手机
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     fun download(url: String) {
         val pathDir = Constants.DOWNLOAD_DIR
         val pathName = pathDir + File.separator +
                 EncryptUtils.encryptMD5ToString(url) + fileTypeStr
-        if(FileUtils.isFileExists(pathName)){
+        if (FileUtils.isFileExists(pathName)) {
             return ToastUtils.showShort("该图片已存在！")
         }
         var mRequestManager = GlideApp.with(this)
@@ -179,7 +189,7 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
                                     val success = FileUtils.copyFile(resource, file)
                                     val resultStr = if (success) "下载成功，目录：$pathName" else "下载失败"
                                     ToastUtils.showLong(resultStr)
-                                    if(success){
+                                    if (success) {
                                         updateMediaStore(file)
                                     }
                                 }
@@ -195,6 +205,40 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
             })
 
         mRequestBuilder.preload()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // NOTE: delegate the permission handling to generated function
+        onRequestPermissionsResult(requestCode, grantResults)
+    }
+
+    @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    fun showRationaleForDownload(request: PermissionRequest) {
+        showRationaleDialog(R.string.permission_download_show_rationale, request)
+    }
+
+    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    fun onDownloadDenied() {
+        ToastUtils.showShort(R.string.permission_download_denied)
+    }
+
+    @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    fun onDownloadNeverAskAgain() {
+        AlertDialog.Builder(this)
+            .setPositiveButton(R.string.button_setting) { _, _ -> AppUtils.launchAppDetailsSettings() }
+            .setCancelable(true)
+            .setMessage("读写手机存储权限被拒绝永不再问，跳转[权限管理-读写手机存储]授权！")
+            .show()
+    }
+
+    private fun showRationaleDialog(@StringRes messageResId: Int, request: PermissionRequest) {
+        AlertDialog.Builder(this)
+            .setPositiveButton(R.string.button_deny) { _, _ -> request.cancel() }
+            .setPositiveButton(R.string.button_allow) { _, _ -> request.proceed() }
+            .setCancelable(true)
+            .setMessage(messageResId)
+            .show()
     }
 
     private fun updateMediaStore(file: File) {

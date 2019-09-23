@@ -10,11 +10,12 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.fitem.ktgames"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -52,4 +53,9 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     //Banner
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+    // 视屏播放器
+    implementation 'com.shuyu:GSYVideoPlayer:2.1.1'
+    // permissionsdispatcher
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.5.0"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.5.0"
 }

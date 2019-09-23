@@ -27,8 +27,11 @@
         </activity>
 
         <activity android:name=".games.ui.grils.activity.GirlsActivity"
+                  android:screenOrientation="portrait"
                   android:theme="@style/TransparentTheme.GrayBlack"/>
-        <activity android:name=".games.ui.video.activity.VideoDetailActivity"/>
+
+        <activity android:name=".games.ui.video.activity.VideoDetailActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize"/>
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.fitem.ktgames.R
 import com.fitem.ktgames.games.model.bean.HomeBean
 import com.fitem.ktgames.games.ui.video.activity.VideoDetailActivity
+import com.fitem.ktgames.games.utils.FormatUtils
 import com.hazz.kotlinmvp.glide.GlideApp
 import io.reactivex.Observable
 
@@ -29,14 +30,11 @@ class VideoAdapter(data: List<HomeBean.Issue.Item>) :
         addItemType(VideoConstant.VIDEO_CONTENT, R.layout.item_home_content)
     }
 
-    // banner 作为 RecyclerView 的第一项
-    var bannerItemSize = 0
-
     override fun convert(helper: BaseViewHolder?, item: HomeBean.Issue.Item?) {
         when (helper?.itemViewType) {
             //Banner
             VideoConstant.VIDEO_BANNER -> {
-                val bannerItemData= item?.itemList
+                val bannerItemData = item?.itemList
                 val bannerFeedList = ArrayList<String>()
                 val bannerTitleList = ArrayList<String>()
                 //取出banner 显示的 img 和 Title
@@ -61,7 +59,6 @@ class VideoAdapter(data: List<HomeBean.Issue.Item>) :
                 }
                 //没有使用到的参数在 kotlin 中用"_"代替
                 helper.getView<BGABanner>(R.id.banner).setDelegate { _, imageView, _, i ->
-
                     goToVideoPlayer(mContext as Activity, imageView, bannerItemData!![i])
 
                 }
@@ -125,7 +122,7 @@ class VideoAdapter(data: List<HomeBean.Issue.Item>) :
             tagText += (it.name + "/")
         }
         // 格式化时间
-        val timeFormat = durationFormat(itemData?.duration)
+        val timeFormat = FormatUtils.durationFormat(itemData?.duration)
 
         tagText += timeFormat
 
@@ -134,38 +131,21 @@ class VideoAdapter(data: List<HomeBean.Issue.Item>) :
         helper.setText(R.id.tv_category, "#" + itemData?.category)
     }
 
-    fun durationFormat(duration: Long?): String {
-        val minute = duration!! / 60
-        val second = duration % 60
-        return if (minute <= 9) {
-            if (second <= 9) {
-                "0$minute' 0$second''"
-            } else {
-                "0$minute' $second''"
-            }
-        } else {
-            if (second <= 9) {
-                "$minute' 0$second''"
-            } else {
-                "$minute' $second''"
-            }
-        }
-    }
-
     /**
      * 跳转到视频详情页面播放
      *
      * @param activity
      * @param view
      */
-    private fun goToVideoPlayer(activity: Activity, view: View, itemData: HomeBean.Issue.Item) {
+    open fun goToVideoPlayer(activity: Activity, view: View, itemData: HomeBean.Issue.Item) {
         val intent = Intent(activity, VideoDetailActivity::class.java)
         intent.putExtra(VideoConstant.BUNDLE_VIDEO_DATA, itemData)
         intent.putExtra(VideoConstant.TRANSITION, true)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             val pair = Pair(view, VideoConstant.IMG_TRANSITION)
             val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                activity, pair)
+                activity, pair
+            )
             ActivityCompat.startActivity(activity, intent, activityOptions.toBundle())
         } else {
             activity.startActivity(intent)

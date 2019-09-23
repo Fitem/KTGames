@@ -12,7 +12,10 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="color_darker_gray">#aaa</color>
+    <color name="color_lighter_gray">#ddd</color>
     <color name="color_translucent">#00000000</color>
+    <color name="color_light_black">#5000</color>
+    <color name="color_window_background">@color/sdk_color_003</color>
 
     <color name="sdk_color_001">#FFFFFF</color>
     <color name="sdk_color_002">#f8f8f8</color>
