@@ -2,6 +2,7 @@ package com.fitem.ktgames.games.ui.grils.adapter
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import com.blankj.utilcode.util.ScreenUtils
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
@@ -23,6 +24,7 @@ class GirlsAdapter(layoutResId: Int, data: List<Girls.ResultsBean>) :
 
     override fun convert(helper: BaseViewHolder?, item: Girls.ResultsBean?) {
         helper?.getView<ImageView>(R.id.iv_pic)?.let {
+            it.layoutParams.height = (ScreenUtils.getScreenWidth() * 0.6f).toInt()
             loadImage(item?.url, it)
         }
     }

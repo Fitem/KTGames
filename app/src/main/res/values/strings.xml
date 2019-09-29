@@ -18,4 +18,5 @@
     <string name="button_setting">去设置</string>
     <string name="button_deny">拒绝</string>
     <string name="permission_download_denied">没有授权，请重新授权！</string>
+    <string name="to_be_develop">待开发</string>
 </resources>

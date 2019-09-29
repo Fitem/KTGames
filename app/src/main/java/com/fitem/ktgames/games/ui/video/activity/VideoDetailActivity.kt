@@ -110,7 +110,14 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View, SwipeRefre
     override fun initListener() {
         mAdapter.onItemClickListener =
             BaseQuickAdapter.OnItemClickListener { _, _, position ->
-                mPresenter.loadVideoInfo(mAdapter.data[position])
+                when (mAdapter.getItem(position)!!.getItemType()) {
+                    VideoConstant.VIDEO_TEXT_CARD -> {
+                        ToastUtils.showShort(R.string.to_be_develop)
+                    }
+                    VideoConstant.VIDEO_SMALL_CARD ->{
+                        mPresenter.loadVideoInfo(mAdapter.data[position])
+                    }
+                }
             }
     }
 
@@ -234,7 +241,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View, SwipeRefre
 
         with(view) {
             tv_action_favorites.setOnClickListener {
-                ToastUtils.showShort("功能待开发，精")
+                ToastUtils.showShort(R.string.to_be_develop)
             }
             tv_action_share.setOnClickListener {
                 ToastUtils.showShort("分享")

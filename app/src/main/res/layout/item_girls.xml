@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    android:orientation="vertical"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="2dp"
-                                    android:layout_margin="3dp"
-                                   app:cardBackgroundColor="@color/sdk_color_003"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:orientation="vertical"
+        app:cardBackgroundColor="@color/sdk_color_003"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="2dp">
 
     <ImageView
             android:id="@+id/iv_pic"

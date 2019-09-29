@@ -9,6 +9,7 @@ import com.fitem.ktgames.common.base.BaseFragment
  */
 
 class LiveFragment : BaseFragment() {
+
     companion object {
 
         fun getInstance(): LiveFragment {

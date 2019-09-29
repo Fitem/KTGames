@@ -101,6 +101,7 @@ class MainActivity : BaseActivity() {
             -> mMineFragment?.let {
                 transaction.show(it)
             } ?: MineFragment.getInstance().let {
+                mMineFragment = it
                 transaction.add(R.id.fl_container, it, "mine")
             }
         }
@@ -110,10 +111,18 @@ class MainActivity : BaseActivity() {
     }
 
     private fun hideFrgamnts(transaction: FragmentTransaction) {
-        mHomeFragment?.let { transaction.hide(it) }
-        mLiveFragment?.let { transaction.hide(it) }
-        mGirlsFragment?.let { transaction.hide(it) }
-        mMineFragment?.let { transaction.hide(it) }
+        mHomeFragment?.let {
+            transaction.hide(it)
+        }
+        mLiveFragment?.let {
+            transaction.hide(it)
+        }
+        mGirlsFragment?.let {
+            transaction.hide(it)
+        }
+        mMineFragment?.let {
+            transaction.hide(it)
+        }
     }
 
     private fun initTabData() {

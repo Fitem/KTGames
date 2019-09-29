@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.fitem.ktgames.R
@@ -26,6 +25,7 @@ import com.fitem.ktgames.games.ui.grils.adapter.GirlsAdapter
 import com.fitem.ktgames.games.ui.main.Constants
 import com.hazz.kotlinmvp.glide.GlideApp
 import kotlinx.android.synthetic.main.fragment_girls.*
+
 
 /**
  * Created by LeiGuangwu on 2019-07-04.
@@ -81,20 +81,28 @@ class GirlsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Girl
     }
 
     override fun initListener() {
-        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            val picView = view.findViewById<View>(R.id.iv_pic)
-            val bean = mAdapter.data[position]
-            transition(bean, picView)
-        }
+        mAdapter.onItemClickListener =
+            BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+                val picView = view.findViewById<View>(R.id.iv_pic)
+                val bean = mAdapter.data[position]
+                transition(bean, picView)
+            }
         mAdapter.setOnLoadMoreListener(this, mRecyclerView)
 
         mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                LogUtils.d("newState：$newState")
                 if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
                     GlideApp.with(AppApplication.context).pauseRequests()
                 } else {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        //-1代表顶部,返回true表示没到顶,还可以滑
+                        //1代表底部,返回true表示没到底部,还可以滑
+                        val isScrollTop = !recyclerView.canScrollVertically(-1)
+                        if(!mSwipeLayout.isRefreshing && isScrollTop) {
+                            mAdapter.notifyDataSetChanged()
+                        }
+                    }
                     GlideApp.with(AppApplication.context).resumeRequests()
                 }
             }
