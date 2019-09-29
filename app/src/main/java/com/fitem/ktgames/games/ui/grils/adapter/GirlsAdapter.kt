@@ -65,7 +65,7 @@ class GirlsAdapter(layoutResId: Int, data: List<Girls.ResultsBean>) :
 
             })
             .fitCenter()
-            .dontAnimate().into(it)
+            .into(it)
     }
 
 }
