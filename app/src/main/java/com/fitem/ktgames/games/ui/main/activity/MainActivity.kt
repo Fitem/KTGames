@@ -6,10 +6,7 @@ import com.fitem.ktgames.R
 import com.fitem.ktgames.common.base.BaseActivity
 import com.fitem.ktgames.games.model.bean.TabEntity
 import com.fitem.ktgames.games.ui.main.Constants
-import com.fitem.ktgames.games.ui.main.fragment.GirlsFragment
-import com.fitem.ktgames.games.ui.main.fragment.HomeFragment
-import com.fitem.ktgames.games.ui.main.fragment.LiveFragment
-import com.fitem.ktgames.games.ui.main.fragment.MineFragment
+import com.fitem.ktgames.games.ui.main.fragment.*
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -31,7 +28,7 @@ class MainActivity : BaseActivity() {
 
     private var mHomeFragment: HomeFragment? = null
     private var mGirlsFragment: GirlsFragment? = null
-    private var mLiveFragment: LiveFragment? = null
+    private var mNewsFragment: NewsFragment? = null
     private var mMineFragment: MineFragment? = null
 
     //默认为0
@@ -83,12 +80,12 @@ class MainActivity : BaseActivity() {
                 mHomeFragment = it
                 transaction.add(R.id.fl_container, it, "video")
             }
-            1 //直播
-            -> mLiveFragment?.let {
+            1 //新闻
+            -> mNewsFragment?.let {
                 transaction.show(it)
-            } ?: LiveFragment.getInstance().let {
-                mLiveFragment = it
-                transaction.add(R.id.fl_container, it, "live")
+            } ?: NewsFragment.getInstance().let {
+                mNewsFragment = it
+                transaction.add(R.id.fl_container, it, "news")
             }
             2 //美女
             -> mGirlsFragment?.let {
@@ -114,7 +111,7 @@ class MainActivity : BaseActivity() {
         mHomeFragment?.let {
             transaction.hide(it)
         }
-        mLiveFragment?.let {
+        mNewsFragment?.let {
             transaction.hide(it)
         }
         mGirlsFragment?.let {
@@ -128,7 +125,7 @@ class MainActivity : BaseActivity() {
     private fun initTabData() {
         mTitls = arrayOf(
             getString(R.string.video),
-            getString(R.string.live),
+            getString(R.string.news),
             getString(R.string.girls),
             getString(R.string.mine)
         )

@@ -17,8 +17,6 @@ class AppApplication : MultiDexApplication() {
 
     companion object {
         var context: Context by Delegates.notNull()
-            private set
-
         fun getAppResources(): Resources {
             val myApplication = context.applicationContext as Application
             return myApplication.resources

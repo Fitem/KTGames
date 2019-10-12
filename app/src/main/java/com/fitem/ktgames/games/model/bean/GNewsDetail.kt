@@ -13,7 +13,7 @@ data class GNewsDetail(
     val source: String,
     val threadVote: Int,
     val title: String,
-    val body: String,
+    var body: String,
     val tid: String,
     val isPicnews: Boolean,
     val advertiseType: String,

@@ -13,6 +13,7 @@ import retrofit2.http.Url
  */
 interface ApiService {
 
+    /* 新闻 */
     @GET("list/{explore_id}/{offset}-{limit}.html")
     fun getNewsList(
         @Path("explore_id") explore_id: String,
@@ -25,9 +26,7 @@ interface ApiService {
         @Path("news_id") news_id: String
     ): Observable<ArrayMap<String, GNewsDetail>>
 
-    /**
-     * 美女图片
-     */
+    /* 美女图片 */
     @GET("{page_size}/{page}")
     fun getGrilsPic(
         @Path("page_size") ps: Int,
@@ -49,9 +48,7 @@ interface ApiService {
         @Query("game_type") gameType: String
     ): Observable<LiveBase<LiveDetail>>
 
-    /**
-     * 首页精选
-     */
+    /* 视频 */
     @GET("v2/feed?")
     fun getFirstHomeData(@Query("num") num: Int): Observable<HomeBean>
 

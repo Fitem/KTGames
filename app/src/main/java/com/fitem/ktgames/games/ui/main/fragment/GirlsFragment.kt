@@ -36,9 +36,7 @@ class GirlsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Girl
 
     private val mPresenter by lazy { GirlsPresenter() }
 
-    private val mAdapter by lazy { GirlsAdapter(R.layout.item_girls, mItemList) }
-
-    private var mItemList: List<Girls.ResultsBean> = ArrayList()
+    private val mAdapter by lazy { GirlsAdapter(R.layout.item_girls, arrayListOf()) }
 
     init {
         mPresenter.attachView(this)

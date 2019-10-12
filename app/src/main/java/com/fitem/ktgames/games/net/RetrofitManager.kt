@@ -57,6 +57,10 @@ object RetrofitManager {
             val requestBuilder = originalRequest.newBuilder()
                 // Provide your custom header here
                 .header("token", token)
+                .addHeader("Content-Type", "application/json")
+                // 添加请求头，解决403问题
+                .removeHeader("User-Agent")
+                .addHeader("User-Agent","Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:0.9.4)")
                 .method(originalRequest.method(), originalRequest.body())
             val request = requestBuilder.build()
             chain.proceed(request)

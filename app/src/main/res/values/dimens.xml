@@ -2,4 +2,9 @@
 <resources>
     <dimen name="tab_text_size">11sp</dimen>
     <dimen name="text_size_sp_18">18sp</dimen>
+    <dimen name="text_size_sp_16">16sp</dimen>
+    <dimen name="text_size_sp_14">14sp</dimen>
+    <dimen name="margin_dp_16">16dp</dimen>
+    <dimen name="margin_dp_10">10dp</dimen>
+    <dimen name="divider_tiny">1px</dimen>
 </resources>
