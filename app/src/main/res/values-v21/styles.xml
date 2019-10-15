@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SelectableItemBackground">
+        <item name="android:background">@drawable/item_white_background</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="SelectableItemBackground.Transparent">
+        <item name="android:background">@drawable/item_transparent_background</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+</resources>

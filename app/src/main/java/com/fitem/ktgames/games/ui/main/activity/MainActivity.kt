@@ -6,7 +6,10 @@ import com.fitem.ktgames.R
 import com.fitem.ktgames.common.base.BaseActivity
 import com.fitem.ktgames.games.model.bean.TabEntity
 import com.fitem.ktgames.games.ui.main.Constants
-import com.fitem.ktgames.games.ui.main.fragment.*
+import com.fitem.ktgames.games.ui.main.fragment.GirlsFragment
+import com.fitem.ktgames.games.ui.main.fragment.HomeFragment
+import com.fitem.ktgames.games.ui.main.fragment.MineFragment
+import com.fitem.ktgames.games.ui.main.fragment.NewsFragment
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -73,7 +76,7 @@ class MainActivity : BaseActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         hideFrgamnts(transaction)
         when (position) {
-            0 //新闻
+            0 //视频
             -> mHomeFragment?.let {
                 transaction.show(it)
             } ?: HomeFragment.getInstance().let {
@@ -129,8 +132,7 @@ class MainActivity : BaseActivity() {
             getString(R.string.girls),
             getString(R.string.mine)
         )
-        (0 until mTitls.size)
-            .mapTo(mTabEntities) {
+        mTitls.indices.mapTo(mTabEntities) {
                 TabEntity(mTitls[it], mIconSelectIds[it], mIconUnselectIds[it])
             }
     }

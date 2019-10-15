@@ -6,5 +6,6 @@
     <dimen name="text_size_sp_14">14sp</dimen>
     <dimen name="margin_dp_16">16dp</dimen>
     <dimen name="margin_dp_10">10dp</dimen>
+    <dimen name="margin_dp_4">4dp</dimen>
     <dimen name="divider_tiny">1px</dimen>
 </resources>

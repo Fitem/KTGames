@@ -11,6 +11,9 @@ object Constants {
 
     const val CURRENT_TAB_INDEX = "current_tab_index"
     const val GIRLS_URL = "girls_url"
+    const val NEWS_ID = "newsId"
+    const val TITLE = "title"
+
     @JvmField
     val DOWNLOAD_DIR = Environment.getExternalStorageDirectory().absolutePath +
             File.separator + AppUtils.getAppName() + File.separator + "Download"

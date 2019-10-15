@@ -17,10 +17,16 @@
     <color name="color_light_black">#5000</color>
     <color name="color_window_background">@color/sdk_color_003</color>
 
+    <!--点击色-->
+    <color name="sdk_color_item_selected">@color/sdk_color_005</color>
+    <color name="sdk_color_white">@color/sdk_color_001</color>
+
     <color name="sdk_color_001">#FFFFFF</color>
     <color name="sdk_color_002">#f8f8f8</color>
     <color name="sdk_color_003">#f5f5f5</color>
     <color name="sdk_color_004">#c9c9ce</color>
+    <color name="sdk_color_005">#D9D9D9</color>
     <color name="sdk_color_007">#9b9b9b</color>
+    <color name="sdk_color_008">#7F7F7F</color>
     <color name="sdk_color_104">#404040</color>
 </resources>

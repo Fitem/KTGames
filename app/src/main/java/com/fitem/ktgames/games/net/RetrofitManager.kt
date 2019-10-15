@@ -23,7 +23,7 @@ object RetrofitManager {
     private var token: String by Preference("token", "")
 
     fun getApiService(hostType: Int): ApiService {
-        val apiService = mRetrofitManager.get(hostType)
+        val apiService = mRetrofitManager[hostType]
         val retrofitManager: ApiService = apiService ?: getRetrofit(hostType).create(ApiService::class.java)
         if (apiService == null) {
             mRetrofitManager[hostType] = retrofitManager

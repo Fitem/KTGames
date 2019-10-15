@@ -70,7 +70,7 @@ class GirlsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Girl
         activity?.let {
             BarUtils.setStatusBarColor(it, ContextCompat.getColor(it, R.color.white))
             BarUtils.setStatusBarLightMode(it, true)
-            BarUtils.addMarginTopEqualStatusBarHeight(mAppBarLayout)
+            BarUtils.addMarginTopEqualStatusBarHeight(mCoordinatorLayout)
         }
     }
 

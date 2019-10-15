@@ -58,4 +58,6 @@ dependencies {
     // permissionsdispatcher
     implementation "org.permissionsdispatcher:permissionsdispatcher:4.5.0"
     kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.5.0"
+    // 富文本
+    implementation "com.zzhoujay.richtext:richtext:3.0.7"
 }

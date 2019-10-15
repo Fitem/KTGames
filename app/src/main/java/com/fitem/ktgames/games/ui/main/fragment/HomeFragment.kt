@@ -63,8 +63,8 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
     }
 
     override fun initView() {
-        mHomeSwipeLayout.setColorSchemeResources(R.color.colorAccent)
-        mHomeSwipeLayout.setOnRefreshListener(this)
+        mSwipeLayout.setColorSchemeResources(R.color.colorAccent)
+        mSwipeLayout.setOnRefreshListener(this)
         mRecyclerView.layoutManager = layoutManager
         mRecyclerView.adapter = mAdapter
     }
@@ -180,7 +180,7 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
 
     override fun showError(msg: String, errorCode: Int) {
         ToastUtils.showShort(msg)
-        mHomeSwipeLayout.isRefreshing = false
+        mSwipeLayout.isRefreshing = false
         mAdapter.loadMoreFail()
     }
 
@@ -190,7 +190,7 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
 
     override fun dismissLoading() {
         ToastUtils.showShort("请求结束")
-        mHomeSwipeLayout.isRefreshing = false
+        mSwipeLayout.isRefreshing = false
         mAdapter.loadMoreComplete()
     }
 }
