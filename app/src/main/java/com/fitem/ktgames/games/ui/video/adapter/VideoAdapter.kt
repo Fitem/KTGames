@@ -48,9 +48,9 @@ class VideoAdapter(data: List<HomeBean.Issue.Item>) :
                     setAutoPlayAble(bannerFeedList.size > 1)
                     setData(bannerFeedList, bannerTitleList)
                     setAdapter { banner, _, feedImageUrl, position ->
-                        com.hazz.kotlinmvp.glide.GlideApp.with(mContext)
+                        GlideApp.with(mContext)
                             .load(feedImageUrl)
-                            .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions().crossFade())
+                            .transition(DrawableTransitionOptions().crossFade())
                             .placeholder(R.drawable.placeholder_banner)
                             .into(banner.getItemImageView(position))
 

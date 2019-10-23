@@ -1,6 +1,9 @@
 package com.fitem.ktgames.games.api
 
 import androidx.collection.ArrayMap
+import com.fitem.ktgames.games.api.ApiConstants.MUSIC_GET_BILLCATEGORY
+import com.fitem.ktgames.games.api.ApiConstants.MUSIC_GET_CATEGORY_LIST
+import com.fitem.ktgames.games.api.ApiConstants.MUSIC_V1_TING
 import com.fitem.ktgames.games.model.bean.*
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -60,4 +63,36 @@ interface ApiService {
 
     @GET("v4/video/related?")
     fun getRelatedData(@Query("id") id: Long): Observable<HomeBean.Issue>
+
+    /* 音乐 */
+    /**
+     * 获取音乐榜单
+     */
+    @GET("$MUSIC_V1_TING?method=$MUSIC_GET_BILLCATEGORY")
+    fun getBillPlaylist(): Observable<BaiduList>
+
+    /**
+     * 获取歌手榜单
+     */
+    @GET("/toplist/artist")
+    fun getTopArtists(@Query("offset") offset: Int, @Query("limit") limit: Int): Observable<ArtistsInfo>
+
+    /**
+     * 获取电台列表
+     */
+    @GET("$MUSIC_V1_TING?version=5.6.5.0&method=$MUSIC_GET_CATEGORY_LIST")
+    fun getRadioChannels(): Observable<RadioData>
+
+    /**
+     * Banner
+     */
+    @GET("banner")
+    fun getBanner(): Observable<BannerResult>
+
+    /**
+     * 获取推荐歌单
+     */
+    @GET("/personalized")
+    fun getersonalizedPlaylist(): Observable<PersonalizedInfo>
+
 }

@@ -5,10 +5,6 @@ package com.fitem.ktgames.games.api
  */
 
 object HostType {
-    /**
-     * 多少种Host类型
-     */
-    const val TYPE_COUNT = 3
 
     /**
      * 第一种
@@ -20,6 +16,10 @@ object HostType {
     const val LIVE_HOST = 3
 
     const val VIDEO_HOST = 4
+
+    const val NETEASE_MUSIC_HOST = 5
+
+    const val BASE_BAIDU_MUSIC_URL = 6
 
     const val PAGE_SIZE = 20
 }

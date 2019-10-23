@@ -31,10 +31,26 @@ object ApiConstants {
     const val LIVE_HOST = "http://api.maxjia.com/api/live/"
 
     /**
+     * 视频
      * http://baobab.kaiyanapp.com/api/v2/feed?date=1503104400000&num=1
      */
     const val VIDEO_HOST = "http://baobab.kaiyanapp.com/api/"
 
+    /**
+     * 网易云音乐
+     */
+    const val BASE_NETEASE_URL = "http://musiclake.leanapp.cn"
+
+    /**
+     * 百度音乐
+     */
+    const val BASE_BAIDU_MUSIC_URL = "http://musicapi.qianqian.com/"
+
+    const val MUSIC_V1_TING = "v1/restserver/ting"
+
+    const val MUSIC_GET_BILLCATEGORY = "baidu.ting.billboard.billCategory" //榜单
+
+    const val MUSIC_GET_CATEGORY_LIST = "baidu.ting.radio.getCategoryList"
     /**
      * 获取对应的host
      *
@@ -42,13 +58,15 @@ object ApiConstants {
      * @return host
      */
     fun getHost(hostType: Int): String {
-        var URL = NEWS_HOST
+        var url = NEWS_HOST
         when (hostType) {
-            HostType.NEWS_HOST -> URL = NEWS_HOST
-            HostType.GRILS_HOST -> URL = GRILS_HOST
-            HostType.LIVE_HOST -> URL = LIVE_HOST
-            HostType.VIDEO_HOST -> URL = VIDEO_HOST
+            HostType.NEWS_HOST -> url = NEWS_HOST
+            HostType.GRILS_HOST -> url = GRILS_HOST
+            HostType.LIVE_HOST -> url = LIVE_HOST
+            HostType.VIDEO_HOST -> url = VIDEO_HOST
+            HostType.NETEASE_MUSIC_HOST -> url = BASE_NETEASE_URL
+            HostType.BASE_BAIDU_MUSIC_URL -> url = BASE_BAIDU_MUSIC_URL
         }
-        return URL
+        return url
     }
 }

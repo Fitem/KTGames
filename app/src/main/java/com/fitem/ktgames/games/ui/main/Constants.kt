@@ -13,6 +13,8 @@ object Constants {
     const val GIRLS_URL = "girls_url"
     const val NEWS_ID = "newsId"
     const val TITLE = "title"
+    const val PLAYLIST_LOCAL_ID = "local"
+    const val NETEASE = "netease"
 
     @JvmField
     val DOWNLOAD_DIR = Environment.getExternalStorageDirectory().absolutePath +

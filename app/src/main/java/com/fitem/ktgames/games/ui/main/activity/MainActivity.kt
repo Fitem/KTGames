@@ -8,7 +8,7 @@ import com.fitem.ktgames.games.model.bean.TabEntity
 import com.fitem.ktgames.games.ui.main.Constants
 import com.fitem.ktgames.games.ui.main.fragment.GirlsFragment
 import com.fitem.ktgames.games.ui.main.fragment.HomeFragment
-import com.fitem.ktgames.games.ui.main.fragment.MineFragment
+import com.fitem.ktgames.games.ui.main.fragment.MusicFragment
 import com.fitem.ktgames.games.ui.main.fragment.NewsFragment
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
@@ -20,19 +20,23 @@ class MainActivity : BaseActivity() {
 
     private var mTitls: Array<String> by Delegates.notNull()
     private var mTabEntities = ArrayList<CustomTabEntity>()
-    private val mIconUnselectIds =
-        arrayOf(R.drawable.ic_home_normal, R.drawable.ic_hot_normal, R.drawable.ic_discovery_normal, R.drawable.ic_mine_normal)
+    private val mIconUnselectIds = arrayOf(
+        R.drawable.ic_home_normal,
+        R.drawable.ic_hot_normal,
+        R.drawable.ic_mine_normal,
+        R.drawable.ic_discovery_normal
+    )
     private val mIconSelectIds = arrayOf(
         R.drawable.ic_home_selected,
         R.drawable.ic_hot_selected,
-        R.drawable.ic_discovery_selected,
-        R.drawable.ic_mine_selected
+        R.drawable.ic_mine_selected,
+        R.drawable.ic_discovery_selected
     )
 
     private var mHomeFragment: HomeFragment? = null
     private var mGirlsFragment: GirlsFragment? = null
     private var mNewsFragment: NewsFragment? = null
-    private var mMineFragment: MineFragment? = null
+    private var mMusicFragment: MusicFragment? = null
 
     //默认为0
     private var mIndex = 0
@@ -97,12 +101,12 @@ class MainActivity : BaseActivity() {
                 mGirlsFragment = it
                 transaction.add(R.id.fl_container, it, "grils")
             }
-            3 //我的
-            -> mMineFragment?.let {
+            3 //音乐
+            -> mMusicFragment?.let {
                 transaction.show(it)
-            } ?: MineFragment.getInstance().let {
-                mMineFragment = it
-                transaction.add(R.id.fl_container, it, "mine")
+            } ?: MusicFragment.getInstance().let {
+                mMusicFragment = it
+                transaction.add(R.id.fl_container, it, "music")
             }
         }
         mIndex = position
@@ -120,7 +124,7 @@ class MainActivity : BaseActivity() {
         mGirlsFragment?.let {
             transaction.hide(it)
         }
-        mMineFragment?.let {
+        mMusicFragment?.let {
             transaction.hide(it)
         }
     }
@@ -130,11 +134,11 @@ class MainActivity : BaseActivity() {
             getString(R.string.video),
             getString(R.string.news),
             getString(R.string.girls),
-            getString(R.string.mine)
+            getString(R.string.music)
         )
         mTitls.indices.mapTo(mTabEntities) {
-                TabEntity(mTitls[it], mIconSelectIds[it], mIconUnselectIds[it])
-            }
+            TabEntity(mTitls[it], mIconSelectIds[it], mIconUnselectIds[it])
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
