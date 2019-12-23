@@ -145,6 +145,7 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
     override fun getLayoutResource(): Int = R.layout.fragment_home
 
     override fun onRefresh() {
+        mAdapter.setEnableLoadMore(false)
         mPresenter.requestHomeData(num)
     }
 
@@ -181,8 +182,12 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
 
     override fun showError(msg: String, errorCode: Int) {
         ToastUtils.showShort(msg)
-        mSwipeLayout.isRefreshing = false
-        mAdapter.loadMoreFail()
+        if(mSwipeLayout.isRefreshing) {
+            mSwipeLayout.isRefreshing = false
+            mAdapter.setEnableLoadMore(true)
+        }else{
+            mAdapter.loadMoreFail()
+        }
     }
 
     override fun showLoading() {

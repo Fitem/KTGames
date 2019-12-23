@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardElevation="2dp"
+        android:layout_margin="@dimen/margin_dp_10"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/mTvRecommendMusic"
+                style="@style/SelectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawableTop="@drawable/ic_music_recommend_24dp"
+                android:drawablePadding="@dimen/margin_dp_4"
+                android:gravity="center"
+                android:paddingTop="@dimen/margin_dp_10"
+                android:paddingBottom="@dimen/margin_dp_10"
+                android:text="@string/recommend_music"
+                android:textAppearance="@style/GeneralFontStyle.Large" />
+
+        <TextView
+                android:id="@+id/mTvHotArtists"
+                style="@style/SelectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawableTop="@drawable/ic_artists_hot_24dp"
+                android:drawablePadding="@dimen/margin_dp_4"
+                android:gravity="center"
+                android:paddingTop="@dimen/margin_dp_10"
+                android:paddingBottom="@dimen/margin_dp_10"
+                android:text="@string/hot_artists"
+                android:textAppearance="@style/GeneralFontStyle.Large" />
+
+        <TextView
+                android:id="@+id/mTvRecommendArtists"
+                style="@style/SelectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawableTop="@drawable/ic_artists_recommend_24dp"
+                android:drawablePadding="@dimen/margin_dp_4"
+                android:gravity="center"
+                android:paddingTop="@dimen/margin_dp_10"
+                android:paddingBottom="@dimen/margin_dp_10"
+                android:text="@string/artists_list"
+                android:textAppearance="@style/GeneralFontStyle.Large" />
+
+        <TextView
+                android:id="@+id/mTvRadio"
+                style="@style/SelectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawableTop="@drawable/ic_radio_recommend_24dp"
+                android:drawablePadding="@dimen/margin_dp_4"
+                android:gravity="center"
+                android:paddingTop="@dimen/margin_dp_10"
+                android:paddingBottom="@dimen/margin_dp_10"
+                android:text="@string/radio"
+                android:textAppearance="@style/GeneralFontStyle.Large" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

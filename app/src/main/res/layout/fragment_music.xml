@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/mCoordinatorLayout"
+        android:background="@color/sdk_color_003"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -44,6 +45,9 @@
                     app:banner_tipTextColor="@color/half_alpha_white"
                     app:banner_tipTextSize="0dp"
                     app:banner_transitionEffect="depth" />
+
+
+            <include layout="@layout/layout_music_home_router" />
 
         </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

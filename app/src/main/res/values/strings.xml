@@ -20,4 +20,10 @@
     <string name="button_deny">拒绝</string>
     <string name="permission_download_denied">没有授权，请重新授权！</string>
     <string name="to_be_develop">待开发</string>
+
+    <!-- Music -->
+    <string name="hot_artists">热门歌手</string>
+    <string name="artists_list">歌手列表</string>
+    <string name="radio">电台</string>
+    <string name="recommend_music">推荐歌曲</string>
 </resources>

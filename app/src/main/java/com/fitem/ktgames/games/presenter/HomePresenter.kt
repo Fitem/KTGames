@@ -67,12 +67,9 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
                     bannerHomeBean?.issueList!![0].itemList.addAll(newBannerItemList)
 
                     setHomeData(bannerHomeBean!!)
-
                 }
-
             }, { t ->
                 mRootView?.apply {
-                    dismissLoading()
                     showError(ExceptionHandle.handleException(t),ExceptionHandle.errorCode)
                 }
             })
