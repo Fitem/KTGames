@@ -8,4 +8,16 @@
     <dimen name="margin_dp_10">10dp</dimen>
     <dimen name="margin_dp_4">4dp</dimen>
     <dimen name="divider_tiny">1px</dimen>
+
+    <!-- 字号定义 -->
+    <dimen name="sdk_text_size_huge">40sp</dimen>
+    <dimen name="sdk_text_size_xxl">25sp</dimen>
+    <dimen name="sdk_text_size_xl">20sp</dimen>
+    <dimen name="sdk_text_size_large">16sp</dimen>
+    <dimen name="sdk_text_size_normal">14sp</dimen>
+    <dimen name="sdk_text_size_medium">13sp</dimen>
+    <dimen name="sdk_text_size_small">12sp</dimen>
+    <dimen name="sdk_text_size_tiny">11sp</dimen>
+    <dimen name="sdk_text_size_micro">9sp</dimen>
+
 </resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 通用字体 -->
+    <style name="GeneralFontStyle" parent="@style/android:TextAppearance">
+        <item name="android:textColor">@color/sdk_color_104</item>
+        <item name="android:textSize">@dimen/sdk_text_size_normal</item>
+    </style>
+
+    <style name="GeneralSubtitleStyle" parent="@style/android:TextAppearance">
+        <item name="android:textColor">@color/sdk_color_008</item>
+        <item name="android:textSize">@dimen/sdk_text_size_normal</item>
+    </style>
+
+    <style name="GeneralSubtitleStyle.Small">
+        <item name="android:textSize">@dimen/sdk_text_size_small</item>
+    </style>
+
+    <style name="GeneralSubtitleStyle.Medium">
+        <item name="android:textSize">@dimen/sdk_text_size_medium</item>
+    </style>
+
+    <style name="GeneralSubtitleStyle.Large">
+        <item name="android:textSize">@dimen/sdk_text_size_large</item>
+    </style>
+
+    <style name="GeneralFontStyle.Large">
+        <item name="android:textSize">@dimen/sdk_text_size_large</item>
+    </style>
+
+    <style name="GeneralFontStyle.XL">
+        <item name="android:textSize">@dimen/sdk_text_size_xl</item>
+    </style>
+
+    <style name="GeneralFontStyle.XXL">
+        <item name="android:textSize">@dimen/sdk_text_size_xxl</item>
+    </style>
+
+    <style name="GeneralFontStyle.Huge">
+        <item name="android:textSize">@dimen/sdk_text_size_huge</item>
+    </style>
+
+    <style name="GeneralFontStyle.Large.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GeneralFontStyle.XL.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GeneralFontStyle.XXL.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GeneralFontStyle.Huge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

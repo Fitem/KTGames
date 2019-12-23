@@ -15,6 +15,8 @@ import com.fitem.ktgames.games.presenter.MusicPresenter
 import com.hazz.kotlinmvp.glide.GlideApp
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_music.*
+import kotlinx.android.synthetic.main.layout_music_home_router.*
+
 
 /**
  * 音乐
@@ -48,12 +50,31 @@ class MusicFragment : BaseFragment(), MusicContract.View {
     }
 
     override fun initView() {
+        mBGABanner.setAdapter { banner, _, feedImageUrl, position ->
+            GlideApp.with(this)
+                .load(feedImageUrl)
+                .transition(DrawableTransitionOptions().crossFade())
+                .placeholder(R.drawable.placeholder_banner)
+                .into(banner.getItemImageView(position))
+        }
     }
 
     override fun initData() {
     }
 
     override fun initListener() {
+        mTvRecommendArtists.setOnClickListener {
+            ToastUtils.showShort(mTvRecommendArtists.text.toString().trim())
+        }
+        mTvHotArtists.setOnClickListener{
+            ToastUtils.showShort(mTvHotArtists.text.toString().trim())
+        }
+        mTvRecommendMusic.setOnClickListener{
+            ToastUtils.showShort(mTvRecommendMusic.text.toString().trim())
+        }
+        mTvRadio.setOnClickListener{
+            ToastUtils.showShort(mTvRadio.text.toString().trim())
+        }
     }
 
     override fun getLayoutResource(): Int = R.layout.fragment_music
@@ -67,7 +88,7 @@ class MusicFragment : BaseFragment(), MusicContract.View {
 
     @SuppressLint("CheckResult")
     override fun setBannerView(banners: List<BannerBean>) {
-        if(!banners.isNullOrEmpty()){
+        if (!banners.isNullOrEmpty()) {
             val bannerFeedList = ArrayList<String>()
             val bannerTitleList = ArrayList<String>()
             //取出banner 显示的 img 和 Title
@@ -79,13 +100,6 @@ class MusicFragment : BaseFragment(), MusicContract.View {
 
             mBGABanner.setAutoPlayAble(banners.size > 1)
             mBGABanner.setData(bannerFeedList, bannerTitleList)
-            mBGABanner.setAdapter { banner, _, feedImageUrl, position ->
-                GlideApp.with(this)
-                    .load(feedImageUrl)
-                    .transition(DrawableTransitionOptions().crossFade())
-                    .placeholder(R.drawable.placeholder_banner)
-                    .into(banner.getItemImageView(position))
-            }
         }
     }
 
