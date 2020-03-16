@@ -1,8 +1,9 @@
 package com.fitem.ktgames.games.ui.grils.activity
 
 import android.Manifest
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
-import android.media.MediaScannerConnection
+import android.net.Uri
 import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
@@ -28,7 +29,6 @@ import com.hazz.kotlinmvp.glide.GlideApp
 import kotlinx.android.synthetic.main.activity_girls.*
 import permissions.dispatcher.*
 import java.io.File
-import java.io.FileNotFoundException
 
 
 /**
@@ -249,8 +249,13 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
     private fun updateMediaStore(file: File) {
         if (file.exists()) {
             try {
-                MediaScannerConnection.scanFile(this, arrayOf(file.absolutePath), null, null)
-            } catch (e: FileNotFoundException) {
+                if (file.exists()) {
+                    val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+                    val uri = Uri.fromFile(file)
+                    intent.data = uri
+                    sendBroadcast(intent)
+                }
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
