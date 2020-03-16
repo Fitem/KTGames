@@ -1,9 +1,8 @@
 package com.fitem.ktgames.games.ui.grils.activity
 
 import android.Manifest
-import android.content.Intent
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
+import android.media.MediaScannerConnection
 import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
@@ -12,10 +11,8 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.EncryptUtils
-import com.blankj.utilcode.util.FileUtils
-import com.blankj.utilcode.util.ToastUtils
+import androidx.core.content.ContextCompat
+import com.blankj.utilcode.util.*
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
@@ -79,7 +76,8 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
     override fun initView() {
 //        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.black_gray))
         mToolbar.setTitle(R.string.girls)
-        findViewById<ViewGroup>(android.R.id.content).getChildAt(0).setBackgroundDrawable(mBackground)
+        findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
+            .setBackgroundDrawable(mBackground)
         setSupportActionBar(mToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(true)
@@ -96,6 +94,9 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
             .fitCenter()
             .transition(DrawableTransitionOptions().crossFade())
             .into(mIvPhoto as ImageView)
+
+        BarUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.color_translucent))
+        BarUtils.addMarginTopEqualStatusBarHeight(mToolbar)
     }
 
     override fun initTheme() {
@@ -207,7 +208,11 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
         mRequestBuilder.preload()
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         // NOTE: delegate the permission handling to generated function
         onRequestPermissionsResult(requestCode, grantResults)
@@ -244,13 +249,11 @@ class GirlsActivity : BaseActivity(), PullBackLayout.Callback {
     private fun updateMediaStore(file: File) {
         if (file.exists()) {
             try {
-                val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
-                val uri = Uri.fromFile(file)
-                intent.data = uri
-                sendBroadcast(intent)
+                MediaScannerConnection.scanFile(this, arrayOf(file.absolutePath), null, null)
             } catch (e: FileNotFoundException) {
                 e.printStackTrace()
             }
         }
     }
+
 }

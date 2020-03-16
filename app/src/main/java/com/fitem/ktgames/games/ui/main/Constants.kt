@@ -1,7 +1,6 @@
 package com.fitem.ktgames.games.ui.main
 
 import android.os.Environment
-import com.blankj.utilcode.util.AppUtils
 import java.io.File
 
 /**
@@ -16,7 +15,11 @@ object Constants {
     const val PLAYLIST_LOCAL_ID = "local"
     const val NETEASE = "netease"
 
-    @JvmField
-    val DOWNLOAD_DIR = Environment.getExternalStorageDirectory().absolutePath +
-            File.separator + AppUtils.getAppName() + File.separator + "Download"
+//    @JvmField
+//    val DOWNLOAD_DIR = Environment.getExternalStorageDirectory().absolutePath +
+//            File.separator + AppUtils.getAppName() + File.separator + "Download"    @JvmField
+
+    private val DCIMPath =
+        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString()
+    val DOWNLOAD_DIR = DCIMPath + File.separator + "KTGames"
 }
