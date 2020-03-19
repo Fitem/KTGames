@@ -10,10 +10,10 @@ publishing {
         def buildGroupId = 'Android'
         def buildArtifactId = 'develop'
         def buildVersion = "7.3.0"
-        def buildClassifier = 'debug'
+        def buildClassifier = ''
 
         def buildArtifact = "undefinedArtifact"
-        def publication = buildClassifier
+        def publication = "debug"
 
         FileTree tree = fileTree(dir: "$buildDir/outputs/apk", include: "**/*.apk", exclude: '**/*AndResGuard*/*.apk')
         tree.each { File file ->
