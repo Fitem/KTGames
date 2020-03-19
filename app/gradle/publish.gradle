@@ -30,7 +30,7 @@ publishing {
             def apkUrl = "$rootProject.ext.artifactoryContext/$rootProject.ext.repo/$buildGroupId/$buildArtifactId/$buildVersion/$buildArtifactId-$buildVersion-$buildClassifier$fileType"
             def outputPic = "$outputPath/$picName"
 
-            task qrCode(type: Exec) {
+            task myQRCode(type: Exec) {
                 commandLine "myqr", "$apkUrl", "-n", "$picName", "-d", "$outputPath"
             }
 
