@@ -12,6 +12,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.10.0'
     }
 }
 
@@ -25,4 +26,21 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext{
+    defaultGitRevision = "local"
+    buildId = System.properties.getProperty("buildId", "0")
+    versionName = System.properties.getProperty("versionName", "7.2.0")                     // 目标版本
+    gitRevision = System.properties.getProperty("gitRevision", defaultGitRevision)
+    // git commit revision
+    featureName = System.properties.getProperty("featureName", "develop")
+    // 功能分支名称，命名feature-xxx
+    featureVersion = System.properties.getProperty("featureVersion", "1.0")
+    // 功能分支版本
+
+    artifactoryContext = System.properties.getProperty("artifactoryContext", "http://localhost:8081/artifactory")
+    repo = System.properties.getProperty("repo", "apps-snapshot-local")
+    repoUserName = System.properties.getProperty("repoUserName", "admin")
+    repoPassword = System.properties.getProperty("repoPassword", "artifactory")
 }
