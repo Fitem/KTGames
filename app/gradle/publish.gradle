@@ -13,7 +13,7 @@ publishing {
         def buildClassifier = ''
 
         def buildArtifact = "undefinedArtifact"
-        def publication = "debug"
+        def publication = "debug1"
 
         FileTree tree = fileTree(dir: "$buildDir/outputs/apk", include: "**/*.apk", exclude: '**/*AndResGuard*/*.apk')
         tree.each { File file ->
