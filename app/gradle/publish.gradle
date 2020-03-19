@@ -30,10 +30,6 @@ publishing {
             def apkUrl = "$rootProject.ext.artifactoryContext/$rootProject.ext.repo/$buildGroupId/$buildArtifactId/$buildVersion/$buildArtifactId-$buildVersion-$buildClassifier$fileType"
             def outputPic = "$outputPath/$picName"
 
-            task myQRCode(type: Exec) {
-                commandLine "myqr", "$apkUrl", "-n", "$picName", "-d", "$outputPath"
-            }
-
             publishing.publications.create("$publication", MavenPublication) {
                 groupId buildGroupId
                 artifactId buildArtifactId
@@ -42,7 +38,7 @@ publishing {
                 artifact("$buildArtifact") {
                     classifier buildClassifier
                 }
-                artifact("$outputPic"){
+                artifact("$outputPic") {
                     classifier buildClassifier
                 }
             }
@@ -79,4 +75,41 @@ artifactory {
     }
 
     clientConfig.timeout = 600 // In seconds. The default timeout is 300 seconds.
+}
+
+task autoCode {
+
+/** 差分构建版本自动上传maven-repo(snapshots), 功能测试版本手动上传至maven-repo(feature-snapshots)*/
+/*配置maven-publish, 使用artifactoryPublish*/
+    def buildFlavor = "KTGames"
+    def buildGroupId = 'Android'
+    def buildArtifactId = 'develop'
+    def buildVersion = "7.3.0"
+    def buildClassifier = 'debug'
+
+    def buildArtifact = "undefinedArtifact"
+    def publication = "debug"
+
+    FileTree tree = fileTree(dir: "$buildDir/outputs/apk", include: "**/*.apk", exclude: '**/*AndResGuard*/*.apk')
+    tree.each { File file ->
+        def fileType = ".apk"
+        // artifactName
+        buildArtifact = file.absolutePath
+        buildGroupId = "Android"
+        buildClassifier = "0/$buildFlavor"
+//                buildClassifier = "$buildVersionName.$buildVersionCode.$gitRevision-$buildFlavor-$buildType"
+
+        def outputPath = "$buildDir/outputs/apk"
+        def packageName = 'app-debug'
+        def picName = "andqr_${packageName}.png"
+        def apkUrl = "$rootProject.ext.artifactoryContext/$rootProject.ext.repo/$buildGroupId/$buildArtifactId/$buildVersion/$buildArtifactId-$buildVersion-$buildClassifier$fileType"
+        def outputPic = "$outputPath/$picName"
+
+        exec {
+            commandLine "myqr", "$apkUrl", "-n", "$picName", "-d", "$outputPath"
+        }
+        println "==========================================================================="
+        println "buildGroupId:$buildGroupId\nbuildArtifactId:$buildArtifactId\nbuildVersion:$buildVersion"
+        println apkUrl
+    }
 }
