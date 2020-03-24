@@ -34,7 +34,7 @@ publishing {
                 commandLine "myqr", "$apkUrl", "-n", "$picName", "-d", "$outputPath"
             }
 
-            create("$publication", MavenPublication) {
+            publishing.publications.create("test", MavenPublication) {
                 groupId buildGroupId
                 artifactId buildArtifactId
                 version buildVersion
