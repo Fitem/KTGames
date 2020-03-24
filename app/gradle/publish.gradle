@@ -34,18 +34,18 @@ publishing {
                 commandLine "myqr", "$apkUrl", "-n", "$picName", "-d", "$outputPath"
             }
 
-//            publishing.publications.create("$publication", MavenPublication) {
-//                groupId buildGroupId
-//                artifactId buildArtifactId
-//                version buildVersion
-//
-//                artifact("$buildArtifact") {
-//                    classifier buildClassifier
-//                }
-//                artifact("$outputPic") {
-//                    classifier buildClassifier
-//                }
-//            }
+            mavenJava(MavenPublication) {
+                groupId buildGroupId
+                artifactId buildArtifactId
+                version buildVersion
+
+                artifact("$buildArtifact") {
+                    classifier buildClassifier
+                }
+                artifact("$outputPic") {
+                    classifier buildClassifier
+                }
+            }
 
 
             println "==========================================================================="
