@@ -18,6 +18,7 @@ publishing {
         FileTree tree = fileTree(dir: "$buildDir/outputs/apk", include: "**/*.apk", exclude: '**/*AndResGuard*/*.apk')
         tree.each { File file ->
             def fileType = ".apk"
+            def picType = ".png"
             // artifactName
             buildArtifact = file.absolutePath
             buildGroupId = "Android"
@@ -28,10 +29,60 @@ publishing {
             def packageName = 'app-debug'
             def picName = "andqr_${packageName}.png"
             def apkUrl = "$rootProject.ext.artifactoryContext/$rootProject.ext.repo/$buildGroupId/$buildArtifactId/$buildVersion/$buildArtifactId-$buildVersion-$buildClassifier$fileType"
+            def apkPicUrl = "$rootProject.ext.artifactoryContext/$rootProject.ext.repo/$buildGroupId/$buildArtifactId/$buildVersion/$buildArtifactId-$buildVersion-$buildClassifier$picType"
             def outputPic = "$outputPath/$picName"
+            def outputName = "QR.html"
+            def outPutHtml = "$outputPath/$outputName"
+
 
             exec {
                 commandLine "myqr", "$apkUrl", "-n", "$picName", "-d", "$outputPath"
+            }
+
+            mavenJava(MavenPublication) {
+                File dir = new File("$outputPath")
+                if (!dir.exists()) {
+                    dir.mkdir()
+                }
+                FileOutputStream fos = new FileOutputStream(new File(dir, outputName))
+                def string = "<!doctype html>\n" +
+                        "<html>\n" +
+                        "  <head>\n" +
+                        "    <meta http-equiv=\"content-type\" content=\"text/html;\">\n" +
+                        "    <meta charset=\"utf-8\">\n" +
+                        "    <meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0\">\n" +
+                        "    <meta name=\"keywords\" content=\"test\" />\n" +
+                        "    <meta name=\"description\" content=\"\" />\n" +
+                        "    <title>Android测试包下载页</title>\n" +
+                        "    <link rel=\"stylesheet\" type=\"text/css\" href=\"style/css/mobile.css\" /></head>\n" +
+                        "  <body>\n" +
+                        "    <div class=\"doc\">\n" +
+                        "      <br/>\n" +
+                        "      <br/>\n" +
+                        "      <p align = \"center\">\n" +
+                        "        <a \n" +
+                        "      id=\"ipaPathHref\" href=\"$apkUrl\">$apkUrl</a>\n" +
+                        "      </p>\n" +
+                        "      <br/>\n" +
+                        "      <br/>\n" +
+                        "      <p align=\"center\">\n" +
+                        "        <a \n" +
+                        "      id=\"plistPathHref\" href=\"$apkUrl\">\n" +
+                        "    <img alt=\"\" src=\"$apkPicUrl\"\n" +
+                        " style=\"height:300px; width:300px\" /></a>\n" +
+                        "      </p>\n" +
+                        "      <br/>\n" +
+                        "      <br/>\n" +
+                        "      <br/>\n" +
+                        "      <p align=\"center\">请使用Android设备扫码</p>\n" +
+                        "      <p align=\"center\">或使用左邻旗下APP广场右上角扫码进行安装</p>\n" +
+                        "      <br/></div>\n" +
+                        "  </body>\n" +
+                        "</html>"
+                def sb = new StringBuilder()
+                sb.append(string)
+                fos.write(sb.toString().getBytes())
+                fos.close()
             }
 
             mavenJava(MavenPublication) {
@@ -43,6 +94,9 @@ publishing {
                     classifier buildClassifier
                 }
                 artifact("$outputPic") {
+                    classifier buildClassifier
+                }
+                artifact("$outPutHtml") {
                     classifier buildClassifier
                 }
             }
